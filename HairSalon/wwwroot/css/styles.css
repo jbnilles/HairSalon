@@ -19,7 +19,31 @@ div#footer {
 }
 .continer-fluid{
   margin-top: 80px;
+  margin-bottom: 500px;
 }
 .jumbotron{
-  height: 1px;
+  background-color: #ffe2e2;
+  margin-top: 50px;
+  text-align: center;
 }
+.card-body{
+  text-align: center;
+}
+body{
+  background-color:#ffe2e2;
+}
+.card-body{
+  background-color: #ffc7c7;
+}
+img#landingImage{
+  width: 25%;
+  height: auto;
+}
+ul{
+  list-style: none;
+}
+.name{
+  font-weight: bold;
+}
+
+

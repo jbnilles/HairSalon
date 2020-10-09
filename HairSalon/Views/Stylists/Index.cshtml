@@ -6,24 +6,35 @@
 <div class="container-fluid">
   <div class="jumbotron">
     <h1>These are our stylists!</h1>
+    <div>
+      <button  class="btn btn-outline-dark stylist-button" >Add Stylist</button>
+      <button  class="btn btn-outline-dark home-button" >Home</button>
+    </div>
   </div>
-  @if (@Model.Count == 0)
-  {
-    <h3>No Stylists have been added yet!</h3>
-  }
-  @using (Html.BeginForm("Search","Stylists"))
-{
-    
-    @Html.Label("stylistName", "Search For Stylist Name")
-    @Html.TextBox("stylistName")
-    <input type="submit" value="Save" />
-}
-  <ul>
-    @foreach (Stylist stylist in Model)
+  <div class="card card-body">
+    @if (@Model.Count == 0)
     {
-        <li>@stylist.StylistName | <a href="/stylists/details/@stylist.StylistId"> Details</a> </li>
+      <h3>No Stylists have been added yet!</h3>
     }
-  </ul>
+    @using (Html.BeginForm("Search","Stylists"))
+    {
+      
+      @Html.Label("stylistName", "Search For Stylist ")
+      @Html.TextBox("stylistName")
+      <input type="submit" value="Search" />
+    }
+    <ul>
+      @foreach (Stylist stylist in Model)
+      {
+          <li><span class="name"> @stylist.StylistName</span> | <a href="/stylists/details/@stylist.StylistId"> Details</a> </li>
+      }
+      
+    </ul>
+    
+    
+  </div>
+  
+  
   <p>@Html.ActionLink("Add a Stylist","Create")</p>
   <p>@Html.ActionLink("Home","Index","Home")</p>
 
