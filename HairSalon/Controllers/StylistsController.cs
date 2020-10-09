@@ -1,20 +1,22 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using HairSalon.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-
+using HairSalon.Models;
 namespace HairSalon.Controllers
 {
     public class StylistsController : Controller
     {
         private readonly HairSalonContext _db;
-        public StylistsController(HairSalonContext db);
+        public StylistsController(HairSalonContext db)
+        {
+
+        }
 
         public ActionResult Index()
         {
-            List<Stylist> model = _db.Stylist.ToList();
+            List<Stylist> model = _db.Stylists.ToList();
             return View(model);
         }
         public ActionResult Create()
@@ -30,7 +32,7 @@ namespace HairSalon.Controllers
         }
         public ActionResult Details(int id)
         {
-            Stylist stylist =  _db.Stylists.FirstOrDefault(x => x.StylistsId == id);
+            Stylist stylist =  _db.Stylists.FirstOrDefault(x => x.StylistId == id);
             List<Client> clients = _db.Clients.Where(x => x.StylistId == id).ToList();
             Dictionary<string, object> model = new Dictionary<string, object>();
             model.Add("Stylist", stylist);

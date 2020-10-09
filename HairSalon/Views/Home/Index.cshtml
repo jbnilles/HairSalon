@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1>Welcome to the Hair Salon Project!</h1>
+  </div>
+
+    
+    <p>@Html.ActionLink("See all Stylists", "Index", "stylists")</p>
+    <p>@Html.ActionLink("See all Clients", "Index", "clients")</p>
+</div>
+@Html.Partial("Header")
+@Html.Partial("Footer")

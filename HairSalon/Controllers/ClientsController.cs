@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+
 
 namespace HairSalon.Controllers
 {
     
-    public class HairSalonController : Controller
+    public class ClientController : Controller
     {
         private readonly HairSalonContext _db;
-        public RestaurantsController(HairSalonContext db)
+        public ClientController(HairSalonContext db)
         {
             _db = db;
         }
