@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+@using HairSalon.Models;
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1>Error</h1>
+  </div>  
+
+    <p>@Model</p>
+    <p>@Html.ActionLink("Go Back to Appointments","Index","Appointments")</p>
+</div>
+@Html.Partial("Header")
+@Html.Partial("Footer")

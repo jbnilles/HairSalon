@@ -30,9 +30,14 @@ namespace HairSalon.Controllers
         [HttpPost]
         public ActionResult Create(Appointment appointment )
         {
-            _db.Appointments.Add(appointment);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if(appointment.IsAbleToSchedule())
+            {
+                _db.Appointments.Add(appointment);
+                _db.SaveChanges();
+                return RedirectToAction("Index");   
+            }
+            return View("Index", "There is a time conflict for this time and stylist");
+            
         }
         public ActionResult Details(int id)
         {
