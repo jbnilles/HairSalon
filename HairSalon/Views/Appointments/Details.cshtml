@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+@using HairSalon.Models;
+
+
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1>Appointment for @Model.Client.ClientName</h1>
+  </div>
+    
+    <ul>
+      <li>Client: @Model.Client.ClientName</li>
+      <li>Stylist: @Model.Stylist.StylistName</li>
+      <li>Description: @Model.AppointmentDescription</li>
+      <li>Time: @Model.AppointmentDate</li>
+    </ul>
+    
+    
+
+    <p>@Html.ActionLink("Edit Appointment","Edit",new {id = Model.AppointmentId})</p>
+    <p>@Html.ActionLink("Delete Appointment", "Delete",new {id = Model.AppointmentId})</p>
+    <p>@Html.ActionLink("Go Back to Appointments","Index","appointments")</p>
+</div>
+@Html.Partial("Header")
+@Html.Partial("Footer")

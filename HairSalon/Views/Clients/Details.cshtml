@@ -17,7 +17,7 @@
     
     
 
-    
+    <p>@Html.ActionLink("Add Appointment","Create","appointments", new {id = Model["client"].ClientId})</p>
     <p>@Html.ActionLink("Edit Client","Edit",new {id = Model["client"].ClientId})</p>
     <p>@Html.ActionLink("Delete Client", "Delete",new {id = Model["client"].ClientId})</p>
     <p>@Html.ActionLink("Go Back to Clients","Index","clients")</p>

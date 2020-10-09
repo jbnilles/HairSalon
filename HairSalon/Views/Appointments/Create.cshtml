@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@model HairSalon.Models.Appointment
+
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h4>Add an Appoint!</h4>
+  </div>
+    @using (Html.BeginForm())
+{
+    @Html.Hidden("StylistId", (int)ViewBag.Client.StylistId);
+    @Html.Hidden("ClientId", (int)ViewBag.Client.ClientId);
+    
+    @Html.Label("Client.ClientName", "Client Name")
+    @Html.TextBox("Client.ClientName",(string)ViewBag.Client.ClientName, new {disabled = "true"})
+    @Html.Label("Client.StylistName", "Stylist Name")
+    @Html.TextBox("Client.StylistName",(string)ViewBag.Client.Stylist.StylistName, new {disabled = "true"})
+    @Html.LabelFor(model => model.AppointmentDescription, "Appointment Description")
+    @Html.TextBoxFor(model => model.AppointmentDescription)
+    @Html.LabelFor(model => model.AppointmentDate, "Appointment Date")
+    @Html.EditorFor(model => model.AppointmentDate)
+    <input type="submit" value="Add Appointment" />
+}
+    <p>@Html.ActionLink("Show all Clients", "Index")</p>
+</div>
+@Html.Partial("Header")
+@Html.Partial("Footer")
+
+
+ 
