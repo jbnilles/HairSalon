@@ -6,24 +6,25 @@
 
 <div class="container-fluid">
   <div class="jumbotron">
-    <h4>Add an Appoint!</h4>
+    <h4>Edit an Appoint!</h4>
   </div>
     @using (Html.BeginForm())
 {
-    @Html.Hidden("StylistId", (int)ViewBag.Client.StylistId);
-    @Html.Hidden("ClientId", (int)ViewBag.Client.ClientId);
+    @Html.HiddenFor(model => model.StylistId);
+    @Html.HiddenFor(model => model.ClientId);
+    @Html.HiddenFor(model => model.AppointmentId);
     
     @Html.Label("Client.ClientName", "Client Name")
-    @Html.TextBox("Client.ClientName",(string)ViewBag.Client.ClientName, new {disabled = "true"})
+    @Html.TextBox("Client.ClientName", Model.Client.ClientName, new {disabled = "true"})
     @Html.Label("Stylist.StylistName", "Stylist Name")
-    @Html.TextBox("Stylist.StylistName",(string)ViewBag.Client.Stylist.StylistName, new {disabled = "true"})
+    @Html.TextBox("Stylist.StylistName",Model.Stylist.StylistName, new {disabled = "true"})
     @Html.LabelFor(model => model.AppointmentDescription, "Appointment Description")
     @Html.TextBoxFor(model => model.AppointmentDescription)
     @Html.LabelFor(model => model.AppointmentDate, "Appointment Date")
     @Html.EditorFor(model => model.AppointmentDate)
     <input type="submit" value="Add Appointment" />
 }
-    <p>@Html.ActionLink("Show all Clients", "Index")</p>
+    <p>@Html.ActionLink("Show all Appointments", "Index")</p>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")

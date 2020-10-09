@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 namespace HairSalon.Models
 {
@@ -11,14 +12,11 @@ namespace HairSalon.Models
         public virtual Client Client {get;set;}
         public virtual Stylist Stylist {get;set;}
 
-        public bool IsAbleToSchedule()
+        public bool IsAbleToSchedule(HashSet<Appointment> appointments)
         {
-            if(this.Stylist == null)
-            {
-                return false;
-            }
+            Console.WriteLine(Client);
 
-            foreach (Appointment appointment in Stylist.Appointments)
+            foreach (Appointment appointment in appointments)
             {
                 TimeSpan ts = AppointmentDate.Subtract(appointment.AppointmentDate);
                 if(ts.TotalHours < 1 && ts.TotalHours > -1)

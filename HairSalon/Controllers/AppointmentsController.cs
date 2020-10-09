@@ -30,13 +30,14 @@ namespace HairSalon.Controllers
         [HttpPost]
         public ActionResult Create(Appointment appointment )
         {
-            if(appointment.IsAbleToSchedule())
+            HashSet<Appointment> appointments =  _db.Appointments.Where(x => x.StylistId == appointment.StylistId).ToHashSet();
+            if(appointment.IsAbleToSchedule(appointments))
             {
                 _db.Appointments.Add(appointment);
                 _db.SaveChanges();
                 return RedirectToAction("Index");   
             }
-            return View("Index", "There is a time conflict for this time and stylist");
+            return View("Error", "There is a time conflict for this time and stylist");
             
         }
         public ActionResult Details(int id)
@@ -47,24 +48,34 @@ namespace HairSalon.Controllers
         public ActionResult Delete(int id)
         {
             Appointment appointment = _db.Appointments.FirstOrDefault(x => x.AppointmentId == id);
-            // _db.Clients.Remove(client);
-            // _db.SaveChanges();
+            _db.Appointments.Remove(appointment);
+            _db.SaveChanges();
             return RedirectToAction("Index");  
         }
         public ActionResult Edit(int id)
         {
-            var thisClient = _db.Clients.FirstOrDefault(c => c.ClientId == id);
-            ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "StylistName", thisClient.StylistId );
+            var thisAppointment = _db.Appointments.FirstOrDefault(c => c.AppointmentId == id);
             
-            return View(thisClient);
+            
+            return View(thisAppointment);
         }
 
         [HttpPost]
-        public ActionResult Edit(Client client)
+        public ActionResult Edit(Appointment appointment)
         {
-            _db.Entry(client).State = EntityState.Modified;
+            _db.Entry(appointment).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult Search(string clientName)
+        {
+            List<Appointment> appointments = _db.Appointments.Where(x => x.Client.ClientName.Contains(clientName)).ToList();
+            return View("Index", appointments); 
+        }
+        public ActionResult OrderByTime()
+        {
+            List<Appointment> appointments = _db.Appointments.OrderBy(x => x.AppointmentDate).ToList();
+            return View("Index", appointments); 
         }
     }
 }
