@@ -11,7 +11,13 @@
   {
     <h3>No Stylists have been added yet!</h3>
   }
-
+  @using (Html.BeginForm("Search","Stylists"))
+{
+    
+    @Html.Label("stylistName", "Search For Stylist Name")
+    @Html.TextBox("stylistName")
+    <input type="submit" value="Save" />
+}
   <ul>
     @foreach (Stylist stylist in Model)
     {

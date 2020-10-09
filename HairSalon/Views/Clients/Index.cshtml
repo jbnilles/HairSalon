@@ -8,7 +8,13 @@
   <div class="jumbotron">
     <h1>Clients</h1>
   </div>
+    @using (Html.BeginForm("Search","clients"))
+    {
     
+    @Html.Label("clientName", "Search For Client by Name")
+    @Html.TextBox("clientName")
+    <input type="submit" value="Search" />
+    }
     @if (@Model.Count == 0)
     {
     <h3>No clients found!</h3>

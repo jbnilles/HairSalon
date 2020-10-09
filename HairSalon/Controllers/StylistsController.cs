@@ -69,6 +69,14 @@ namespace HairSalon.Controllers
             }
              
         }
+        
+        public ActionResult Search(string stylistName)
+        {
+            List<Stylist> stylists = _db.Stylists.Where(x => x.StylistName.Contains(stylistName)).ToList();
+            return View("Index", stylists); 
+        }
+
+
         public ActionResult Error()
         {
             return View();
