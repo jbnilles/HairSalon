@@ -2,15 +2,15 @@
   Layout = "_Layout";
 }
 @using HairSalon.Models;
-
-
 <div class="container-fluid">
   <div class="jumbotron">
     <h1>Clients</h1>
+    <button  class="btn btn-outline-dark home-button">Home</button>
+    <button  class="btn btn-outline-dark" onclick='window.location.href="/clients/create/"' >Add Client</button>
   </div>
+  <div class="card card-body">
     @using (Html.BeginForm("Search","clients"))
     {
-    
     @Html.Label("clientName", "Search For Client by Name")
     @Html.TextBox("clientName")
     <input type="submit" value="Search" />
@@ -23,8 +23,7 @@
     {
     <li>@client.ClientName | <a href="/clients/details/@client.ClientId">details</a> </li>
     }
-    <p>@Html.ActionLink("Add a Client","Create")</p>
-    <p>@Html.ActionLink("Home","Index","Home")</p>
+  </div>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")

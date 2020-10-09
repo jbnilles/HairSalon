@@ -6,21 +6,36 @@
 
 <div class="container-fluid">
   <div class="jumbotron">
-
+    <h1>Client: @Model["client"].ClientName</h1>
+    <button  class="btn btn-outline-dark client-button" >View Clients</button>
+    <button  class="btn btn-outline-dark" onclick='window.location.href="/appointments/create/" + @Model["client"].ClientId' >Create Appointment</button>
+    <button  class="btn btn-outline-dark" onclick='window.location.href="/clients/edit/" + @Model["client"].ClientId'>Edit Client</button>
+    <button  class="btn btn-outline-dark" onclick='window.location.href="/clients/delete/" + @Model["client"].ClientId'>Delete Client</button>
   </div>
-    <h1>Client @Model["client"].ClientName</h1>
-    <ul>
+    <div class="card card-body">
+      <h3>Info:</h3>
+      <ul>
         <li>Phone: @Model["client"].ClientPhone</li>
         <li>Email: @Model["client"].ClientEmail</li>
         <li>Stylist: @Model["client"].Stylist.StylistName</li>
-    </ul>
-    
-    
-
-    <p>@Html.ActionLink("Add Appointment","Create","appointments", new {id = Model["client"].ClientId})</p>
-    <p>@Html.ActionLink("Edit Client","Edit",new {id = Model["client"].ClientId})</p>
-    <p>@Html.ActionLink("Delete Client", "Delete",new {id = Model["client"].ClientId})</p>
-    <p>@Html.ActionLink("Go Back to Clients","Index","clients")</p>
+      </ul>
+    </div>
+    <div class="card card-body">
+      @if(Model["appointments"].Count == 0)
+      {
+        <h3>@Model["client"].ClientName currently has no Appointments</h3>
+      } 
+      else
+      {
+        <h3>Appointments:</h3>
+        <ul>
+          @foreach (Appointment appointment in Model["appointments"])
+          {
+            <li>Stylist: @appointment.Stylist.StylistName: @appointment.AppointmentDate | @Html.ActionLink("Details","Details", "Appointments", new {id = appointment.AppointmentId})</li>
+          }
+        </ul>
+      }
+    </div>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")

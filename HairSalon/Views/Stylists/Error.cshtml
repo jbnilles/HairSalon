@@ -6,9 +6,10 @@
   <div class="jumbotron">
     <h1>Error</h1>
   </div>  
-
-    <p>@Model</p>
-    <p>@Html.ActionLink("Go Back to Stylists","Index","stylists")</p>
+  <div class="card card-body">
+    <h3>@Model</h3>
+  </div>
+  <button  class="btn btn-dark stylist-button" >Stylist</button>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")

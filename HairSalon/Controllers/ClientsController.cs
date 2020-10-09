@@ -41,10 +41,10 @@ namespace HairSalon.Controllers
         public ActionResult Details(int id)
         {
             Client client =  _db.Clients.FirstOrDefault(x => x.ClientId == id);
-            
+            List<Appointment> appointments = _db.Appointments.Where(x => x.ClientId == id).OrderBy(x => x.AppointmentDate).ToList();
             Dictionary<string, object> model = new Dictionary<string, object>();
             model.Add("client", client);
-            
+            model.Add("appointments",appointments);
             return View(model);
         }
         public ActionResult Delete(int id)

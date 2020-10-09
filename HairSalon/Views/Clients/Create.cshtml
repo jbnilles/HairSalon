@@ -1,26 +1,26 @@
 @{
   Layout = "_Layout";
 }
-
 @model HairSalon.Models.Client
-
 <div class="container-fluid">
   <div class="jumbotron">
-    <h4>Add a Client!</h4>
+    <h1>Add a Client!</h1>
   </div>
+  <div class="card card-body">
     @using (Html.BeginForm())
-{
-    @Html.LabelFor(model => model.ClientName)
-    @Html.TextBoxFor(model => model.ClientName, new {required = "required"})
-    @Html.LabelFor(model => model.ClientPhone)
-    @Html.EditorFor(model => model.ClientPhone)
-    @Html.LabelFor(model => model.ClientEmail)
-    @Html.TextBoxFor(model => model.ClientEmail)
-    @Html.LabelFor(model => model.Stylist)
-    @Html.DropDownList("StylistId")
-    <input type="submit" value="Add new Client" />
-}
-    <p>@Html.ActionLink("Show all Clients", "Index")</p>
+    {
+      @Html.LabelFor(model => model.ClientName, "Client Name")
+      @Html.TextBoxFor(model => model.ClientName, new {required = "required"})
+      @Html.LabelFor(model => model.ClientPhone, "Phone Number")
+      @Html.EditorFor(model => model.ClientPhone)
+      @Html.LabelFor(model => model.ClientEmail, "E-Mail")
+      @Html.TextBoxFor(model => model.ClientEmail)
+      @Html.LabelFor(model => model.Stylist)
+      @Html.DropDownList("StylistId")
+      <input type="submit" class="btn btn-dark" value="Add new Client" />
+      <button type="button"  class="btn btn-dark client-button">Cancel</button>
+    }
+  </div>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")
