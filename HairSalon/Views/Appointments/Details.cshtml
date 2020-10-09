@@ -2,25 +2,20 @@
   Layout = "_Layout";
 }
 @using HairSalon.Models;
-
-
 <div class="container-fluid">
   <div class="jumbotron">
     <h1>Appointment for @Model.Client.ClientName</h1>
+    <button  class="btn btn-outline-dark" onclick='window.location.href="/appointments/edit/" + @Model.AppointmentId' >Edit Appointment</button>
+    <button  class="btn btn-outline-dark" onclick='window.location.href="/appointments/delete/" + @Model.AppointmentId'>Delete Appointment</button>
+    <button  class="btn btn-outline-dark" onclick='window.location.href="/clients/details/" + @Model.Client.ClientId'>Return to Client</button>
   </div>
-    
-    <ul>
-      <li>Client: @Model.Client.ClientName</li>
-      <li>Stylist: @Model.Stylist.StylistName</li>
-      <li>Description: @Model.AppointmentDescription</li>
-      <li>Time: @Model.AppointmentDate</li>
-    </ul>
-    
-    
-
-    <p>@Html.ActionLink("Edit Appointment","Edit",new {id = Model.AppointmentId})</p>
-    <p>@Html.ActionLink("Delete Appointment", "Delete",new {id = Model.AppointmentId})</p>
-    <p>@Html.ActionLink("Go Back to Appointments","Index","appointments")</p>
+    <div class="card card-body">
+      <ul>
+        <li>Stylist: @Model.Stylist.StylistName</li>
+        <li>Description: @Model.AppointmentDescription</li>
+        <li>Time: @Model.AppointmentDate</li>
+      </ul>
+    </div>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")

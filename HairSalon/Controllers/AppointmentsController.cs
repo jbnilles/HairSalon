@@ -54,7 +54,7 @@ namespace HairSalon.Controllers
         }
         public ActionResult Edit(int id)
         {
-            var thisAppointment = _db.Appointments.FirstOrDefault(c => c.AppointmentId == id);
+            Appointment thisAppointment = _db.Appointments.FirstOrDefault(c => c.AppointmentId == id);
             
             
             return View(thisAppointment);
@@ -63,9 +63,10 @@ namespace HairSalon.Controllers
         [HttpPost]
         public ActionResult Edit(Appointment appointment)
         {
+            Appointment model = appointment;
             _db.Entry(appointment).State = EntityState.Modified;
             _db.SaveChanges();
-            return RedirectToAction("Index");
+           return RedirectToAction("Index");
         }
         public ActionResult Search(string clientName)
         {

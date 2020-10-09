@@ -9,6 +9,9 @@ $(document).ready(function () {
   $('.stylist-button').click(function () {
       window.location.href = '/stylists';
   })
+  $('.appointment-button').click(function () {
+    window.location.href = '/appointments';
+})
 
 })
 

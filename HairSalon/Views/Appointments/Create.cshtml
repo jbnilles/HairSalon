@@ -1,29 +1,28 @@
 @{
   Layout = "_Layout";
 }
-
 @model HairSalon.Models.Appointment
-
 <div class="container-fluid">
   <div class="jumbotron">
-    <h4>Add an Appoint!</h4>
+    <h1>Add an Appoint!</h1>
   </div>
+  <div class="card card-body">
     @using (Html.BeginForm())
-{
-    @Html.Hidden("StylistId", (int)ViewBag.Client.StylistId);
-    @Html.Hidden("ClientId", (int)ViewBag.Client.ClientId);
-    
-    @Html.Label("Client.ClientName", "Client Name")
-    @Html.TextBox("Client.ClientName",(string)ViewBag.Client.ClientName, new {disabled = "true"})
-    @Html.Label("Stylist.StylistName", "Stylist Name")
-    @Html.TextBox("Stylist.StylistName",(string)ViewBag.Client.Stylist.StylistName, new {disabled = "true"})
-    @Html.LabelFor(model => model.AppointmentDescription, "Appointment Description")
-    @Html.TextBoxFor(model => model.AppointmentDescription)
-    @Html.LabelFor(model => model.AppointmentDate, "Appointment Date")
-    @Html.EditorFor(model => model.AppointmentDate)
-    <input type="submit" value="Add Appointment" />
-}
-    <p>@Html.ActionLink("Show all Clients", "Index")</p>
+    {
+      @Html.Hidden("StylistId", (int)ViewBag.Client.StylistId);
+      @Html.Hidden("ClientId", (int)ViewBag.Client.ClientId);
+      @Html.Label("Client.ClientName", "Client Name")
+      @Html.TextBox("Client.ClientName",(string)ViewBag.Client.ClientName, new {disabled = "true"})
+      @Html.Label("Stylist.StylistName", "Stylist Name")
+      @Html.TextBox("Stylist.StylistName",(string)ViewBag.Client.Stylist.StylistName, new {disabled = "true"})
+      @Html.LabelFor(model => model.AppointmentDescription, "Appointment Description")
+      @Html.TextBoxFor(model => model.AppointmentDescription)
+      @Html.LabelFor(model => model.AppointmentDate, "Appointment Date")
+      @Html.EditorFor(model => model.AppointmentDate)
+      <button class="btn btn-dark" type="submit" >Create Appointment</button>
+      <button type="button" class="btn btn-dark" onclick='window.location.href="/clients/details/" + @ViewBag.Client.ClientId.ToString()'>Cancel</button>
+    }
+  </div>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")
