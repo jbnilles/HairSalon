@@ -2,21 +2,20 @@
   Layout = "_Layout";
 }
 @model HairSalon.Models.Stylist
-
-
 <div class="container">
   <div class="jumbotron">
-    <h4>Edit a Stylist!</h4>
+    <h1>Edit a Stylist!</h1>
   </div>
-    
-    @using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.StylistId)
-    @Html.LabelFor(model => model.StylistName)
-    @Html.EditorFor(model => model.StylistName, new {required = "required"})
-    <input type="submit" value="Edit" />
-}
-    <p>@Html.ActionLink("Show all Stylist", "Index")</p>
+    <div class="card card-body">
+      @using (Html.BeginForm())
+      {
+        @Html.HiddenFor(model => model.StylistId)
+        @Html.LabelFor(model => model.StylistName, "Stylist Name")
+        @Html.EditorFor(model => model.StylistName, new {required = "required"})
+        <button class="btn btn-dark" type="submit" >Edit</button>
+        <button class="btn btn-dark" type="button" onclick='window.location.href="/stylists/details/" + @Model.StylistId.ToString()'>Cancel</button>
+      }
+    </div>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")

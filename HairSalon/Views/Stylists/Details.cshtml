@@ -4,27 +4,43 @@
 @using HairSalon.Models;
 <div class="container-fluid">
   <div class="jumbotron">
-    <h1>Stylist | @Model["stylist"].StylistName</h1>
+    <h1>Details for @Model["stylist"].StylistName</h1>
+    <button  class="btn btn-outline-dark stylist-button" >View Stylists</button>
+    <button  class="btn btn-outline-dark" onclick='window.location.href="/stylists/edit/" + @Model["stylist"].StylistId' >Edit Stylist</button>
+    <button  class="btn btn-outline-dark" onclick='window.location.href="/stylists/delete/" + @Model["stylist"].StylistId'>Delete Stylist</button>
   </div>  
-  
-  @if(Model["client"].Count == 0)
-  {
-    <h3>@Model["stylist"].StylistName currently has no clients</h3>
-  }
-  else
-  {
-    <h3>@Model["stylist"].StylistName clients:</h3>
-    <ul>
-    @foreach (Client client in Model["client"])
+  <div class="card card-body">
+    @if(Model["client"].Count == 0)
     {
-        <li>@Html.ActionLink(client.ClientName,"Details", "clients", new {id = client.ClientId}) | @client.ClientPhone</li>
+      <h3>@Model["stylist"].StylistName currently has no clients</h3>
     }
-    </ul>
-  }
-    
-    <p>@Html.ActionLink("Edit Stylist","Edit",new {id = Model["stylist"].StylistId})</p>
-    <p>@Html.ActionLink("Delete Stylist", "Delete",new {id = Model["stylist"].StylistId})</p>
-    <p>@Html.ActionLink("Go Back to Stylists","Index","stylists")</p>
+    else
+    {
+      <h3>@Model["stylist"].StylistName clients:</h3>
+      <ul>
+        @foreach (Client client in Model["client"])
+        {
+          <li>@Html.ActionLink(client.ClientName,"Details", "clients", new {id = client.ClientId}) | @client.ClientPhone</li>
+        }
+      </ul>
+    }
+  </div>
+  <div class="card card-body">
+    @if(Model["appointments"].Count == 0)
+    {
+      <h3>@Model["stylist"].StylistName currently has no Appointments</h3>
+    }
+    else
+    {
+      <h3>@Model["stylist"].StylistName Appointments:</h3>
+      <ul>
+        @foreach (Appointment appointment in Model["appointments"])
+        {
+          <li>@appointment.Client.ClientName: @appointment.AppointmentDate | @Html.ActionLink("Details","Details", "Appointments", new {id = appointment.AppointmentId})</li>
+        }
+      </ul>
+    }
+  </div>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")

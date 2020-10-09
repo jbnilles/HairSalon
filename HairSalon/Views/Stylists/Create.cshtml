@@ -4,15 +4,17 @@
 @model HairSalon.Models.Stylist
 <div class="container-fluid">
   <div class="jumbotron">
-    Create a stylist account
+    <h1>Create a stylist account</h1>
   </div>
-  @using(Html.BeginForm())
-  {
-    @Html.LabelFor(model => model.StylistName, new {required = "required"})
-    @Html.TextBoxFor(model => model.StylistName)
-    <input type="submit" value="Create Stylist">
-  }
-  <p>@Html.ActionLink("Show all Stylist", "Index")</p>
+  <div class="card card-body">
+    @using(Html.BeginForm())
+    {
+      @Html.LabelFor(model => model.StylistName, "Stylist Name")
+      @Html.TextBoxFor(model => model.StylistName, new {required = "required"})
+      <button type="submit" class="btn btn-dark">Create Stylist</button>
+      <button class="btn btn-dark stylist-button">Cancel</button>
+    }   
+  </div>
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")

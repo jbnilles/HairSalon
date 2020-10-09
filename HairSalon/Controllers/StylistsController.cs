@@ -34,9 +34,11 @@ namespace HairSalon.Controllers
         {
             Stylist stylist =  _db.Stylists.FirstOrDefault(x => x.StylistId == id);
             List<Client> clients = _db.Clients.Where(x => x.StylistId == id).ToList();
+            List<Appointment> appointments = _db.Appointments.Where(x => x.StylistId == id).OrderBy(x => x.AppointmentDate).ToList();
             Dictionary<string, object> model = new Dictionary<string, object>();
             model.Add("stylist", stylist);
             model.Add("client", clients);
+            model.Add("appointments", appointments);
             return View(model);
         }
         public ActionResult Edit(int id)

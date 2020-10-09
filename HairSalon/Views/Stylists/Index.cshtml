@@ -1,13 +1,13 @@
+<script src="~/js/StylistsIndex.js"></script>
 @{
   Layout = "_Layout";
 }
-
 @using HairSalon.Models;
 <div class="container-fluid">
   <div class="jumbotron">
-    <h1>These are our stylists!</h1>
+    <h1>These are our Stylists!</h1>
     <div>
-      <button  class="btn btn-outline-dark stylist-button" >Add Stylist</button>
+      <button  class="btn btn-outline-dark" id="create-stylist-button" >Add Stylist</button>
       <button  class="btn btn-outline-dark home-button" >Home</button>
     </div>
   </div>
@@ -26,19 +26,10 @@
     <ul>
       @foreach (Stylist stylist in Model)
       {
-          <li><span class="name"> @stylist.StylistName</span> | <a href="/stylists/details/@stylist.StylistId"> Details</a> </li>
+        <li><span class="name"> @stylist.StylistName</span> | <a href="/stylists/details/@stylist.StylistId"> Details</a> </li>
       }
-      
     </ul>
-    
-    
   </div>
-  
-  
-  <p>@Html.ActionLink("Add a Stylist","Create")</p>
-  <p>@Html.ActionLink("Home","Index","Home")</p>
-
-
 </div>
 @Html.Partial("Header")
 @Html.Partial("Footer")

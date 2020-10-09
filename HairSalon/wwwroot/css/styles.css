@@ -26,8 +26,9 @@ div#footer {
   margin-top: 50px;
   text-align: center;
 }
-.card-body{
+.card{
   text-align: center;
+  margin-bottom: 50px;
 }
 body{
   background-color:#ffe2e2;
@@ -45,5 +46,6 @@ ul{
 .name{
   font-weight: bold;
 }
+
 
 
