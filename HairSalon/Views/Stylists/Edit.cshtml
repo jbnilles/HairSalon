@@ -13,7 +13,7 @@
 {
     @Html.HiddenFor(model => model.StylistId)
     @Html.LabelFor(model => model.StylistName)
-    @Html.EditorFor(model => model.StylistName)
+    @Html.EditorFor(model => model.StylistName, new {required = "required"})
     <input type="submit" value="Edit" />
 }
     <p>@Html.ActionLink("Show all Stylist", "Index")</p>

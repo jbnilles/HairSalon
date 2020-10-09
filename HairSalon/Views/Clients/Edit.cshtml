@@ -14,7 +14,7 @@
 {
     @Html.HiddenFor(model => model.ClientId)
     @Html.LabelFor(model => model.ClientName)
-    @Html.EditorFor(model => model.ClientName)
+    @Html.EditorFor(model => model.ClientName, new {required = "required"})
     @Html.LabelFor(model => model.ClientPhone)
     @Html.EditorFor(model => model.ClientPhone)
     @Html.LabelFor(model => model.ClientEmail)
