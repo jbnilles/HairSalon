@@ -6,9 +6,23 @@
   <div class="jumbotron">
     <h1>Stylist | @Model["stylist"].StylistName</h1>
   </div>  
-
-    <p>@Html.ActionLink("Edit Stylist","Edit",new {id = Model["stylist"].CuisineId})</p>
-    <p>@Html.ActionLink("Delete Stylist", "Delete",new {id = Model["stylist"].CuisineId})</p>
+  @if(Model["client"].Count == 0)
+  {
+    <h3>@Model["stylist"].StylistName currently has no clients</h3>
+  }
+  else
+  {
+    <h3>@Model["stylist"].StylistName clients:</h3>
+    <ul>
+    @foreach (Client client in Model["client"])
+    {
+        <li>@Html.ActionLink(client.ClientName,"Details", "clients", new {id = client.ClientId}) | @client.ClientPhone</li>
+    }
+    </ul>
+  }
+    
+    <p>@Html.ActionLink("Edit Stylist","Edit",new {id = Model["stylist"].StylistId})</p>
+    <p>@Html.ActionLink("Delete Stylist", "Delete",new {id = Model["stylist"].StylistId})</p>
     <p>@Html.ActionLink("Go Back to Stylists","Index","stylists")</p>
 </div>
 @Html.Partial("Header")

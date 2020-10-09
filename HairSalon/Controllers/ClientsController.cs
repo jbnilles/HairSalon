@@ -10,10 +10,10 @@ using System.Linq;
 namespace HairSalon.Controllers
 {
     
-    public class ClientController : Controller
+    public class ClientsController : Controller
     {
         private readonly HairSalonContext _db;
-        public ClientController(HairSalonContext db)
+        public ClientsController(HairSalonContext db)
         {
             _db = db;
         }
@@ -24,6 +24,10 @@ namespace HairSalon.Controllers
         }
         public ActionResult Create()
         {
+            if(_db.Stylists.ToList().Count == 0)
+            {
+                return View ("Error", "Cannot add client until stylist is added");
+            }
             ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "StylistName");
             return View();
         }

@@ -11,7 +11,7 @@ namespace HairSalon.Controllers
         private readonly HairSalonContext _db;
         public StylistsController(HairSalonContext db)
         {
-
+            _db = db;
         }
 
         public ActionResult Index()
@@ -35,7 +35,7 @@ namespace HairSalon.Controllers
             Stylist stylist =  _db.Stylists.FirstOrDefault(x => x.StylistId == id);
             List<Client> clients = _db.Clients.Where(x => x.StylistId == id).ToList();
             Dictionary<string, object> model = new Dictionary<string, object>();
-            model.Add("Stylist", stylist);
+            model.Add("stylist", stylist);
             model.Add("client", clients);
             return View(model);
         }
@@ -58,7 +58,8 @@ namespace HairSalon.Controllers
             List<Client> clients = _db.Clients.Where(x => x.StylistId == id).ToList();
             if(clients.Count != 0)
             {
-                return RedirectToAction("Error");//error msg
+                string model = "Cannot delete a stylist that has clients";
+                return View("Error", model);//error msg
             }
             else
             {
