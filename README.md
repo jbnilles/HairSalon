@@ -17,6 +17,16 @@ _This project allows the user to create stylists and clients and make appointmen
 * _create the database from the joseph_nilles.sql file that is in the root dir of the porject_
 * _navigate to the root dir of this project_
 * _Navigate to the HairSalon dir_
+* Create a file called `appsettings.json`
+* In the `appsettings.json` file add the following
+```json
+{
+  "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=joseph_nilles;uid=root;pwd=YOUR_PASSWORD;"
+  }
+}
+```
+* Replace `YOUR_PASSWORD` with your own MySQL password
 * _In the terminal enter the command 'dotnet restore'_
 * _In the terminal enter the command 'dotnet run'_
 
